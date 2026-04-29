@@ -1,5 +1,6 @@
 const  express=require('express')
 const connectDb = require('./db/connection')
+const {client, connectRedis} =require('./db/redis')
 const oderRoutes=require('./questions/mongodbQuestion/eCommerce/oders.rotues')
 const userRoutes=require('./questions/mongodbQuestion/eCommerce/users.routes')
 const {routes :productRoutes}=require('./questions/mongodbQuestion/eCommerce/product.routes')
@@ -9,6 +10,10 @@ const app=express()
 
 app.use(express.json())
 
+//redis connect
+connectRedis()
+
+//mongodb connect
 connectDb()
 
 //mongodb agrigation question
